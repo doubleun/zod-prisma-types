@@ -52,6 +52,7 @@ export class ExtendedDMMFModelImportStatement extends ExtendedDMMFModelValidator
     if (this.fields.some((field) => field.isJsonType)) {
       statements.push(
         `import { JsonValueSchema } from '../${inputTypePath}/JsonValueSchema'`,
+        `import { JsonValueSchema } from '../${inputTypePath}/JsonValueSchema'`,
       );
     }
 
