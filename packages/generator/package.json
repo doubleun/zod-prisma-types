@@ -1,8 +1,8 @@
 {
-  "name": "zod-prisma-types",
-  "version": "3.2.4",
+  "name": "@doubleun/skinx-zod-prisma-types",
+  "version": "0.1.0",
   "description": "Generates zod schemas from Prisma models with advanced validation",
-  "author": "Chris Hörmann",
+  "author": "Wachi",
   "license": "MIT",
   "main": "dist/generator.js",
   "types": "dist/generator.d.ts",
@@ -26,6 +26,7 @@
     "zod-prisma-types": "dist/bin.js"
   },
   "scripts": {
+    "prepare": "turbo run build",
     "lint": "eslint --ext ts,tsx,js,jsx --fix .",
     "test": "vitest",
     "build": "tsc",
@@ -50,6 +51,9 @@
     "code-block-writer": "^12.0.0",
     "lodash": "^4.17.21",
     "zod": "^3.24.1"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "peerDependencies": {
     "@prisma/client": "^4.x.x || ^5.x.x || ^6.x.x",
