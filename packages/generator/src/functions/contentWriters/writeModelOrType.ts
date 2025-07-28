@@ -81,6 +81,7 @@ export const writeModelOrType = (
   writer.blankLine();
 
   writeHeading(`${model.formattedNames.upperCaseSpace} SCHEMA`, 'FAT');
+  writeHeading(`TESTTT`, 'FAT');
 
   writer.blankLine();
 
