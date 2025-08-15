@@ -36,6 +36,7 @@ export class ExtendedDMMFFieldBase
   readonly documentation?: DMMF.Field['documentation'];
 
   readonly isNullable: boolean;
+  readonly isTrField: boolean;
   readonly isJsonType: boolean;
   readonly isBytesType: boolean;
   readonly isDecimalType: boolean;
@@ -72,6 +73,7 @@ export class ExtendedDMMFFieldBase
     this.documentation = field.documentation;
 
     this.isNullable = this._setIsNullable();
+    this.isTrField = this._setIsTrField();
     this.isJsonType = this._setIsJsonType();
     this.isBytesType = this._setIsBytesType();
     this.isDecimalType = this._setIsDecimalType();
@@ -80,6 +82,10 @@ export class ExtendedDMMFFieldBase
     this.isOptionalDefaultField = this._setIsOptionalDefaultField();
 
     this._errorLocation = this._setErrorLocation();
+  }
+
+  private _setIsTrField() {
+    return this.name.endsWith('Tr');
   }
 
   private _setIsJsonType() {

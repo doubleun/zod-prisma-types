@@ -52,6 +52,11 @@ export interface ExtendedDMMFModel extends DMMF.Model, FormattedNames {
   /**
    * Flag to indicate if the model has required json fields.
    */
+  readonly hasTrFields: boolean;
+
+  /**
+   * Flag to indicate if the model has required json fields.
+   */
   readonly hasRequiredJsonFields: boolean;
 
   /**

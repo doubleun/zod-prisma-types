@@ -11,6 +11,7 @@ import {
 } from '.';
 import { FileWriter } from '../classes';
 import { CreateFiles } from '../types';
+import { writeTrFieldSchema } from './contentWriters/writeTrFieldSchema';
 
 /////////////////////////////////////////////////
 // FUNCTION
@@ -71,6 +72,11 @@ export const writeInputTypeFiles: CreateFiles = ({ path, dmmf }) => {
     // ------------------------------------------------------------
 
     if (dmmf.schema.hasJsonTypes) {
+      new FileWriter().createFile(
+        `${folderPath}/TrFieldSchema.ts`,
+        (fileWriter) => writeTrFieldSchema({ fileWriter, dmmf }),
+      );
+
       new FileWriter().createFile(
         `${folderPath}/JsonValueSchema.ts`,
         (fileWriter) => writeJsonValue({ fileWriter, dmmf }),

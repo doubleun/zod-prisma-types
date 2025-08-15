@@ -8,6 +8,7 @@ import {
   writeScalar,
 } from '..';
 import { ExtendedWriteFieldOptions } from '../../types';
+import { writeTrField } from '../fieldWriters/writeTrField';
 
 export const writeModelFields = (options: ExtendedWriteFieldOptions) => {
   if (options.field.clearedDocumentation) {
@@ -24,6 +25,13 @@ export const writeModelFields = (options: ExtendedWriteFieldOptions) => {
 
   if (options.field.kind === 'enum') {
     return writeEnum(options);
+  }
+
+  if (options.field.isTrField) {
+    if (options.isResponseType) {
+      return writeTrField(options, true);
+    }
+    return writeTrField(options);
   }
 
   if (options.field.isJsonType) {

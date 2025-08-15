@@ -4,6 +4,7 @@ import { ExtendedDMMFModelBase } from './01_extendedDMMFModelBase';
 
 export class ExtendedDMMFModelFlags extends ExtendedDMMFModelBase {
   readonly hasRelationFields: boolean;
+  readonly hasTrFields: boolean;
   readonly hasRequiredJsonFields: boolean;
   readonly hasOptionalJsonFields: boolean;
   readonly hasOmitFields: boolean;
@@ -19,6 +20,7 @@ export class ExtendedDMMFModelFlags extends ExtendedDMMFModelBase {
     super(generatorConfig, model);
 
     this.hasRelationFields = this._setHasRelationFields();
+    this.hasTrFields = this._setHasTrFields();
     this.hasRequiredJsonFields = this._setHasRequiredJsonFields();
     this.hasOptionalJsonFields = this._setHasOptionalJsonFields();
     this.hasDecimalFields = this._setHasDecimalFields();
@@ -36,6 +38,10 @@ export class ExtendedDMMFModelFlags extends ExtendedDMMFModelBase {
 
   private _setHasRelationFields() {
     return this.relationFields.length > 0;
+  }
+
+  private _setHasTrFields() {
+    return this.fields.some((field) => field.isTrField);
   }
 
   private _setHasRequiredJsonFields() {

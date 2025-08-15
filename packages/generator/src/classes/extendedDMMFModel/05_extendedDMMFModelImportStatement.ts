@@ -50,6 +50,11 @@ export class ExtendedDMMFModelImportStatement extends ExtendedDMMFModelValidator
     const { inputTypePath, prismaClientPath } = this.generatorConfig;
 
     if (this.fields.some((field) => field.isJsonType)) {
+      if (this.fields.some((field) => field.isTrField)) {
+        statements.push(
+          `import { TrFieldSchema } from '../${inputTypePath}/TrFieldSchema'`,
+        );
+      }
       statements.push(
         `import { JsonValueSchema } from '../${inputTypePath}/JsonValueSchema'`,
       );

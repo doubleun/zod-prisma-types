@@ -192,6 +192,7 @@ export interface WriteFieldOptions {
 export interface ExtendedWriteFieldOptions extends WriteFieldOptions {
   model: ExtendedDMMFModel;
   dmmf: ExtendedDMMF;
+  isResponseType?: boolean;
 }
 
 export interface ContentWriterOptions {

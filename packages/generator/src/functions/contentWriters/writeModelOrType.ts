@@ -80,8 +80,6 @@ export const writeModelOrType = (
 
   writer.blankLine();
 
-  writeHeading(`${model.formattedNames.upperCaseSpace} SCHEMA`, 'FAT');
-
   writer.blankLine();
 
   writeJSDoc(model.clearedDocumentation);
@@ -108,6 +106,27 @@ export const writeModelOrType = (
   writer
     .blankLine()
     .write(`export type ${model.name} = z.infer<typeof ${model.name}Schema>`);
+
+  if (model.hasTrFields) {
+    writer.blankLine();
+    writer
+      .write(`export const ${model.name}ResponseSchema = z.object(`)
+      .inlineBlock(() => {
+        [...model.enumFields, ...model.scalarFields].forEach((field) => {
+          writeModelFields({
+            writer,
+            field,
+            model,
+            dmmf,
+            isResponseType: true,
+          });
+        });
+      });
+    if (model.zodCustomErrors) {
+      writer.write(`, ${model.zodCustomErrors}`);
+    }
+    writer.write(`)`);
+  }
 
   // WRITE CUSTOM VALIDATORS VALUE TYPES
   // -------------------------------------------

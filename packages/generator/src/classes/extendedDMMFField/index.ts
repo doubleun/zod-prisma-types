@@ -21,6 +21,12 @@ export interface ExtendedDMMFField extends DMMF.Field, FormattedNames {
    * Is used in writer functions.
    * Makes the code more readable when it is in a seperate property.
    */
+  readonly isTrField: boolean;
+
+  /**
+   * Is used in writer functions.
+   * Makes the code more readable when it is in a seperate property.
+   */
   readonly isJsonType: boolean;
 
   /**
