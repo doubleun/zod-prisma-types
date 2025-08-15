@@ -2,11 +2,9 @@ import { WriteFieldOptions } from '../../types';
 
 export const writeTrField = (
   { writer, field }: WriteFieldOptions,
-  needTransform?: boolean,
+  isResponseType?: boolean,
 ) => {
-  const zodField = needTransform
-    ? 'JsonValueSchema.transform(TrFieldSchema.parse)'
-    : 'TrFieldSchema';
+  const zodField = isResponseType ? 'JsonValueSchema' : 'TrFieldSchema';
   writer
     .conditionalWrite(field.omitInModel(), '// omitted: ')
     .write(`${field.formattedNames.original}: ${zodField}`)
